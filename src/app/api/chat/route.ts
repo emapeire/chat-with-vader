@@ -13,7 +13,22 @@ export async function POST(req: Request) {
   const response = await openai.chat.completions.create({
     model: "gpt-3.5-turbo",
     stream: true,
-    messages,
+    messages: [
+      {
+        role: "system",
+        content: "A conversation about Star Wars",
+      },
+      {
+        role: "user",
+        content: "Who is your favorite character?",
+      },
+      ...messages,
+    ],
+    max_tokens: 500,
+    temperature: 0.7,
+    top_p: 1,
+    frequency_penalty: 1,
+    presence_penalty: 1,
   });
 
   const stream = OpenAIStream(response);
