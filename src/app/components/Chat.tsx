@@ -7,21 +7,23 @@ export function Chat() {
 
   return (
     <div className="flex flex-col max-w-xl px-8 m-auto">
-      {
-        messages.map(m => {
-          const isUser = m.role === 'user'
-          return (
-            <div key={m.id} className="p-4 mb-2 bg-gray-800 rounded-md">
-              <p className="font-bold">
-                {m.role === 'user' ? '🧑🏻‍💻 You' : '🤖 Vader'}
-              </p>
-              <p className={`${isUser ? 'text-blue-400' : 'text-red-400'}`}>
-                {m.content}
-              </p>
-            </div>
-          )
-        })
-      }
+      <div className="overflow-auto h-96">
+        {
+          messages.map(m => {
+            const isUser = m.role === 'user'
+            return (
+              <div key={m.id} className="p-4 mb-2 bg-gray-800 rounded-md">
+                <p className="font-bold">
+                  {m.role === 'user' ? '🧑🏻‍💻 You' : '🤖 Vader'}
+                </p>
+                <p className={`${isUser ? 'text-blue-400' : 'text-red-400'}`}>
+                  {m.content}
+                </p>
+              </div>
+            )
+          })
+        }
+      </div>
       <form onSubmit={handleSubmit} className="flex flex-col items-center">
         <input
           className="fixed w-full max-w-xl px-4 py-2 m-auto mb-8 text-sm border
