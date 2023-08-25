@@ -11,10 +11,12 @@ export function Chat() {
         messages.map(m => {
           const isUser = m.role === 'user'
           return (
-            <div key={m.id}>
-              <p>
-                {m.role === 'user' ? '🧑🏻‍💻 => ' : '🤖 => '}
-                <span className={`${isUser ? 'text-blue-400' : 'text-red-400'}`}>{m.content}</span>
+            <div key={m.id} className="p-4 mb-2 bg-gray-800 rounded-md">
+              <p className="font-bold">
+                {m.role === 'user' ? '🧑🏻‍💻 You' : '🤖 Vader'}
+              </p>
+              <p className={`${isUser ? 'text-blue-400' : 'text-red-400'}`}>
+                {m.content}
               </p>
             </div>
           )
@@ -26,7 +28,7 @@ export function Chat() {
           border-gray-400 rounded-full shadow-2xl bottom-4"
           type='text'
           name='content'
-          placeholder='Chat with Darth Vader...'
+          placeholder='Say Hello!'
           value={input}
           onChange={handleInputChange}
         />

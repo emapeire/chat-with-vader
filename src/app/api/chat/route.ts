@@ -8,7 +8,7 @@ const openai = new OpenAI({
 export const runtime = "edge";
 
 export async function POST(req: Request) {
-  // const { messages } = await req.json();
+  const { messages } = await req.json();
 
   const response = await openai.chat.completions.create({
     model: "gpt-3.5-turbo",
@@ -18,11 +18,11 @@ export async function POST(req: Request) {
         role: "system",
         content: "Act like the Darth Vader character from the star wars movie",
       },
-      // {
-      //   role: "user",
-      //   content: "Who was Darth Vader?",
-      // },
-      // ...messages
+      {
+        role: "user",
+        content: "Hello",
+      },
+      ...messages,
     ],
     max_tokens: 500,
     temperature: 0.7,
